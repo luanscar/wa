@@ -20,11 +20,18 @@ const AuthForm = () => {
   const [variant, setVariant] = useState<Variant>('LOGIN');
   const [isLoading, setIsLoading] = useState(false);
 
+  const [isMounted, setIsMounted] = useState(false);
+
+
   useEffect(() => {
+    setIsMounted(true);
     if (session?.status === 'authenticated') {
       router.push('/panel')
     }
   }, [session?.status, router]);
+
+
+
 
   const toggleVariant = useCallback(() => {
     if (variant === 'LOGIN') {
@@ -103,6 +110,11 @@ const AuthForm = () => {
         }
       })
       .finally(() => setIsLoading(false));
+  }
+
+
+  if (!isMounted) {
+    return null;
   }
 
   return (

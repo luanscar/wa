@@ -14,6 +14,7 @@ export async function POST(
     password
   } = body;
 
+
   const hashedPassword = await bcrypt.hash(password, 12);
 
 
@@ -27,6 +28,8 @@ export async function POST(
     return NextResponse.json({ error: "E-mail já existente." }, { status: 400 })
   }
 
+
+
   const newUser = await db.user.create({
     data: {
       email,
@@ -35,6 +38,28 @@ export async function POST(
       hashedPassword
     }
   });
+
+  const newTenant = await db.tenant.create({
+    data: {
+      name: 'Meu Tenant',
+      slug: 'Slug Tenant',
+      plan: 'Free',
+      users: {
+        create: [
+          {
+            userId: 'clp5yx4a00000e1z3jiouc8h3',
+            assignedBy: 'Luan',
+          }
+
+        ]
+      }
+    }
+  });
+
+
+  console.log(newTenant)
+
+
   return NextResponse.json(newUser);
 
 
