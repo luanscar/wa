@@ -64,6 +64,8 @@ model Instance {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  tenants InstancesOnTenants[]
 }
 
 model Tenant {
@@ -76,7 +78,8 @@ model Tenant {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  users UsersOnTenants[]
+  instances InstancesOnTenants[]
+  users     UsersOnTenants[]
 }
 
 model UsersOnTenants {
@@ -88,4 +91,15 @@ model UsersOnTenants {
   assignedBy String
 
   @@id([userId, tenantId])
+}
+
+model InstancesOnTenants {
+  instance   Instance @relation(fields: [instanceId], references: [id])
+  instanceId String
+  tenant     Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  tenantId   String
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([instanceId, tenantId])
 }
