@@ -1,4 +1,5 @@
 import { NavigationSideBar } from "@/components/navigation/navigation-sidebar";
+import { SidebarHeader } from "@/components/sidebar/sidebar-header";
 import { Separator } from "@/components/ui/separator";
 
 const MainLayout = async ({
@@ -12,7 +13,7 @@ const MainLayout = async ({
         <NavigationSideBar />
 
       </div>
-      <main className="md:pl-[72px] h-full">
+      <main className="md:pl-[72px]  h-full">
         {children}
       </main>
     </div>
