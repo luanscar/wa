@@ -18,7 +18,7 @@ export const SidebarInstance = ({ instanceName, status, qrcode }: SidebarInstanc
   console.log(params)
   const router = useRouter();
   const onClick = () => {
-    router.push(`/instances/`)
+    router.push(`/instances/${instanceId}`)
   }
   return (
     <div className="flex flex-col h-full text-primary w-full  bg-white border-r-2 border-r-[#F7F7F9]">

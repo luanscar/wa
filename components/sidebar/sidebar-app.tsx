@@ -47,7 +47,7 @@ export const SidebarApp = async () => {
             <SidebarInstance
               key={instance.id}
               instanceName={instance.instanceName}
-
+              instanceId={instance.id}
             />
           ))}
         </div>

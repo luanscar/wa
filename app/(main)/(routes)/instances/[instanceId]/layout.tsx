@@ -7,6 +7,10 @@ const InstanceIdLayout = async ({ children, params }: {
 }) => {
 
   const profile = await currentProfile();
+
+  if (!profile) {
+    // return redirectToSignIn();
+  }
   return (
     <div className="h-full">
       <div
