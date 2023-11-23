@@ -11,7 +11,10 @@ export const SidebarHeader = () => {
 
   return (
     <div className="flex w-full border-b-2 border-b-[#F7F7F9] px-4 py-4">
-      <Label className="text-zinc-600">{capitalizedPathname}</Label>
+      <Label className="
+      text-lg 
+      font-semibold 
+      text-zinc-600 ">{capitalizedPathname}</Label>
     </div>
   )
 }

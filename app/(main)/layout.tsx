@@ -1,6 +1,5 @@
-import { NavigationSideBar } from "@/components/navigation/navigation-sidebar";
-import { SidebarHeader } from "@/components/sidebar/sidebar-header";
-import { Separator } from "@/components/ui/separator";
+import Sidebar from "@/components/sidebar/Sidebar";
+
 
 const MainLayout = async ({
   children
@@ -9,11 +8,12 @@ const MainLayout = async ({
 }) => {
   return (
     <div className="h-full">
-      <div className="hidden md:flex h-full w-[72px] z-30 flex-col fixed inset-y-0">
-        <NavigationSideBar />
+      <div className="hidden md:flex h-full w-20 z-30 flex-col fixed inset-y-0">
+        <Sidebar>
 
+        </Sidebar>
       </div>
-      <main className="md:pl-[72px]  h-full">
+      <main className="h-full">
         {children}
       </main>
     </div>
