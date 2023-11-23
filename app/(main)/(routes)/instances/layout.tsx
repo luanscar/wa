@@ -2,6 +2,7 @@
 import { db } from "@/lib/db";
 import InstanceList from "./components/InstanceList";
 import { currentProfile } from "@/lib/currentProfile";
+import getUsers from "@/app/actions/getUsers";
 
 
 export default async function InstancesLayout({
@@ -12,6 +13,9 @@ export default async function InstancesLayout({
 
   const user = await currentProfile();
 
+  const users = await getUsers();
+
+  console.log(users)
 
   const usersOnTenants = await db.usersOnTenants.findMany({
     where: {
