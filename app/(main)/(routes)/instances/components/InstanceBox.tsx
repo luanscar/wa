@@ -7,14 +7,7 @@ import Avatar from "@/app/components/Avatar";
 import LoadingModal from "@/components/modals/LoadingModal";
 
 interface InstanceBoxProps {
-  data: {
-    id: string;
-    instanceName: string | null;
-    status: string | null;
-    qrcode: string | null;
-    createdAt: Date;
-    updatedAt: Date;
-  };
+  data: User;
 }
 
 const InstanceBox: React.FC<InstanceBoxProps> = ({
@@ -60,7 +53,7 @@ const InstanceBox: React.FC<InstanceBoxProps> = ({
             <span className="absolute inset-0" aria-hidden="true" />
             <div className="flex justify-between items-center mb-1">
               <p className="text-sm font-medium text-gray-900">
-                {data.instanceName}
+                {data.name}
               </p>
             </div>
           </div>

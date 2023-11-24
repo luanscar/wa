@@ -1,11 +1,10 @@
-import { Instance } from "@prisma/client";
+import { Tenant } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "createInstance";
+export type ModalType = "createTenant";
 
 interface ModalData {
-  instance?: Instance;
-  
+  tenant?: Tenant;
 }
 
 interface ModalStore {
@@ -16,7 +15,7 @@ interface ModalStore {
   onClose: () => void;
 }
 
-export const useModal = create<ModalStore>((set) => ({
+export const useModal = create<ModalStore>(set => ({
   type: null,
   data: {},
   isOpen: false,

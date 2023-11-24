@@ -37,14 +37,13 @@ export default async function InstancesLayout({
 
   });
 
-  const instances = usersOnTenants[0].tenant.instances
 
   return (
     <div className="h-full">
 
       <InstanceList
 
-        items={instances} />
+        items={users} />
       {children}
     </div>
 

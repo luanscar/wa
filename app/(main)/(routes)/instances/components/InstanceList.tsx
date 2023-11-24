@@ -2,21 +2,12 @@
 
 
 import { SidebarHeader } from "@/components/sidebar/sidebar-header";
-import { Instance, Tenant, UsersOnTenants } from "@prisma/client";
+import { Instance, User, Tenant, UsersOnTenants } from "@prisma/client";
 import InstanceBox from "./InstanceBox";
 
 
 interface InstanceListProps {
-  items: {
-    instance: {
-      id: string;
-      instanceName: string | null;
-      status: string | null;
-      qrcode: string | null;
-      createdAt: Date;
-      updatedAt: Date;
-    }
-  }[]
+  items: User[];
 }
 
 const InstanceList: React.FC<InstanceListProps> = ({
@@ -45,8 +36,8 @@ const InstanceList: React.FC<InstanceListProps> = ({
         </div>
         {items.map((item) => (
           <InstanceBox
-            key={item.instance.id}
-            data={item.instance}
+            key={item.id}
+            data={item}
           />
         ))}
       </div>

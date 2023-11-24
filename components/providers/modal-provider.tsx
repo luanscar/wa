@@ -1,8 +1,7 @@
 "use client";
 
-import { CreateInstanceModal } from "@/components/modals/create-instance-modal";
 import { useEffect, useState } from "react";
-import { QueryProvider } from "./query-provider";
+import { CreateTenantModel } from "../modals/create-tenant-modal";
 
 
 export const ModalProvider = () => {
@@ -19,7 +18,6 @@ export const ModalProvider = () => {
 
   return (
     <>
-      <CreateInstanceModal />
 
     </>
   )

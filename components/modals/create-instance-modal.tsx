@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dialog"
 import api from "@/services/api";
 import { Button } from "../ui/button";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { QRCodeArea } from "../qrcode-area";
 
 const apiKey = 'B6D711FCDE4D4FD5936544120E713976';
@@ -63,9 +62,7 @@ export const CreateInstanceModal = () => {
 
   const { isOpen, onClose, type } = useModal();
 
-  const isModalOpen = isOpen && type === "createInstance";
-
-
+  const isModalOpen = isOpen && type === "createTenant";
 
   const handleClose = () => {
     onClose();
