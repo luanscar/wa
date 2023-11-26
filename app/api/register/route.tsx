@@ -18,7 +18,7 @@ export async function POST(
   const hashedPassword = await bcrypt.hash(password, 12);
 
 
-  const isUserExists = await db.user.findUnique({
+  const isUserExists = await db.profile.findUnique({
     where: {
       email: body.email
     }
@@ -30,11 +30,11 @@ export async function POST(
 
 
 
-  const newUser = await db.user.create({
+  const newUser = await db.profile.create({
     data: {
       email,
       name,
-      userToken: uuidv4(),
+      profileToken: uuidv4(),
       hashedPassword
     }
   });

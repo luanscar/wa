@@ -2,7 +2,7 @@
 
 
 import { SidebarHeader } from "@/components/sidebar/sidebar-header";
-import { Instance, User, Tenant, UsersOnTenants } from "@prisma/client";
+import { User } from "@prisma/client";
 import InstanceBox from "./InstanceBox";
 
 

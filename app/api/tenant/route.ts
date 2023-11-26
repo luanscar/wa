@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import { MemberRole } from "@prisma/client";
 
 export async function POST(req: Request) {
   try {
@@ -13,17 +14,34 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
     const slug = name.trim().replaceAll(" ", "-").toLowerCase();
-    const server = await db.tenant.create({
+    
+    const tenant = await db.tenant.create({
       data: {
-        userId: profile.id,
+        profileId: profile.id,
         name,
-        slug: slug
+        slug: slug,
+        channels: {
+          create: [
+            {
+              name: "general", profileId: profile.id
+            }
+          ]
+        },
+        members: {
+          create: [
+            {
+              profileId: profile.id,
+              role: MemberRole.ADMIN
+            }
+          ]
+        }
+     
       }
     });
 
-    return NextResponse.json(server);
+    return NextResponse.json(tenant);
   } catch (error) {
-    console.log("[SERVERS_POST]", error);
+    console.log("[TENANTS_POST]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

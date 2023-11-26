@@ -1,7 +1,28 @@
-import Image from "next/image";
+"use client"
+
 import AuthForm from "./components/AuthForm";
+import { Suspense, useEffect, useState } from "react";
 
 const Auth = () => {
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+
+
+    setIsMounted(true);
+
+   
+  });
+
+
+  if (!isMounted) {
+
+    return null;   
+  }
+
+
+
   return (
     <div
       className="
@@ -29,7 +50,8 @@ const Auth = () => {
         >
           Sign in to your account
         </h2>
-      </div>
+      </div>       
+      
       <AuthForm />
     </div>
   )

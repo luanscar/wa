@@ -39,6 +39,7 @@ export const NavigationSideBar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const newPathname = pathname.split("/")
+  
   return (
     <div className="space-y-4 flex flex-col items-center h-full text-primary w-full border-r-2 border-r-[#F7F7F9] bg-white py-3">
       <div className="flex flex-col items-stretch h-full space-y-4 mt-4">

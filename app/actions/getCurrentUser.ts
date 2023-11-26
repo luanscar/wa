@@ -10,7 +10,7 @@ const getCurrentUser = async () => {
       return null;
     }
 
-    const currentUser = await db.user.findUnique({
+    const currentUser = await db.profile.findUnique({
       where: {
         email: session.user.email as string
       }

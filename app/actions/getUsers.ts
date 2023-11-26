@@ -10,7 +10,7 @@ const getUsers = async () => {
   }
 
   try {
-    const users = await db.user.findMany({
+    const users = await db.profile.findMany({
       orderBy: {
         createdAt: 'desc'
       },

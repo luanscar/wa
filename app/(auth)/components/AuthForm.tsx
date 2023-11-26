@@ -20,16 +20,14 @@ const AuthForm = () => {
   const [variant, setVariant] = useState<Variant>('LOGIN');
   const [isLoading, setIsLoading] = useState(false);
 
-  const [isMounted, setIsMounted] = useState(false);
-
 
   useEffect(() => {
-    setIsMounted(true);
+        
     if (session?.status === 'authenticated') {
       router.push('/setup')
     }
-  }, [session?.status, router]);
 
+  }, [session?.status, router]);
 
 
 
@@ -70,7 +68,8 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
-            router.push('/instances')
+            toast.success('Account created!')
+            router.push('/')
           }
         })
         // .catch(() => toast.error('Something went wrong!'))
@@ -89,7 +88,8 @@ const AuthForm = () => {
           }
 
           if (callback?.ok) {
-            router.push('/instances')
+            toast.success('Success')
+            router.push('/')
           }
         })
         .finally(() => setIsLoading(false))
@@ -106,17 +106,14 @@ const AuthForm = () => {
         }
 
         if (callback?.ok) {
-          router.push('/instances')
+          router.push('/')
         }
       })
       .finally(() => setIsLoading(false));
   }
 
 
-  if (!isMounted) {
-    return null;
-  }
-
+  
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div

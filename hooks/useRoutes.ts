@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { HiArrowLeftOnRectangle, HiUsers } from 'react-icons/hi2';
 import { signOut } from "next-auth/react";
 import useConversation from "./useConversation";
@@ -12,31 +12,36 @@ import { LuSmartphone } from "react-icons/lu";
 const useRoutes = () => {
   const pathname = usePathname();
   const { conversationId } = useConversation();
+  const params = useParams();
+
 
   const routes = useMemo(() => [
-    { 
-      label: 'Panel', 
-      href: '/panel', 
-      icon: LuCat,
-      active: pathname === '/panel' 
-    },
+    
+    
     { 
       label: 'Inbox', 
-      href: '/conversations', 
+      href:`/${params.tenantSlug}/inbox`, 
       icon: LuInbox,
-      active: pathname === '/conversations' || !!conversationId
+      active: pathname ===`/${params.tenantSlug}/inbox` || !!conversationId
     },
     { 
-      label: 'Contacts', 
-      href: '/contacts', 
+      label: 'Panel', 
+      href: `/${params.tenantSlug}/panel`, 
+      icon: LuCat,
+      active: pathname === `/${params.tenantSlug}/panel` 
+    },
+    
+    { 
+      label: 'Users', 
+      href: `/${params.tenantSlug}/users`, 
       icon: LuUsers,
-      active: pathname === '/conatcts'
+      active: pathname === `/${params.tenantSlug}/contacts`
     },
     { 
       label: 'Instances', 
-      href: '/instances', 
+      href: `/${params.tenantSlug}/instances`, 
       icon: LuSmartphone,
-      active: pathname === '/instances'
+      active:  pathname === `/${params.tenantSlug}/instances`
     },
     {
       label: 'Logout', 

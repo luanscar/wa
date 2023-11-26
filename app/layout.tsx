@@ -5,6 +5,8 @@ import AuthContext from '@/context/AuthContext'
 import ToasterContext from '@/context/ToasterContext'
 import { ModalProvider } from '@/components/providers/modal-provider'
 import { QueryProvider } from '@/components/providers/query-provider'
+import NextProgressBar from '@/components/providers/NextProgressBar'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -20,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <NextProgressBar>
         <AuthContext>
           <ToasterContext />
           <QueryProvider>
@@ -27,6 +30,7 @@ export default function RootLayout({
             {children}
           </QueryProvider>
         </AuthContext>
+        </NextProgressBar>
       </body>
     </html>
   )

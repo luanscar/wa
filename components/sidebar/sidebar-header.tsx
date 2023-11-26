@@ -1,20 +1,35 @@
-"use client"
+"use client";
 
-import { usePathname } from "next/navigation";
-import { Label } from "../ui/label"
+import { useParams, usePathname } from "next/navigation";
+import { Label } from "../ui/label";
 
 
 export const SidebarHeader = () => {
-  const pathname = usePathname().split("/");
-  const capitalizedPathname = pathname[1].charAt(0).toUpperCase().concat(pathname[1].slice(1))
+  const params = useParams();
+  const parts = usePathname();
+  
+  const firstPart = parts.split("/");
 
+  // Obtenha o segundo segmento (índice 1) e capitalize a primeira letra
+  const formattedString = parts[1].charAt(0).toUpperCase();
+
+  console.log(formattedString);
 
   return (
-    <div className="flex w-full border-b-2 border-b-[#F7F7F9] px-4 py-4">
-      <Label className="
-      text-lg 
-      font-semibold 
-      text-zinc-600 ">{capitalizedPathname}</Label>
+    <div className="flex justify-between items-center w-full border-b-2 border-b-[#F7F7F9] px-4 py-4">
+     
+
+        <Label
+          className="
+      text-sm 
+      text-zinc-600 "
+        >
+          {formattedString}
+        </Label>
+     
+
+       
+     
     </div>
-  )
-}
+  );
+};
