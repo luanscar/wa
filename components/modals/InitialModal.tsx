@@ -53,7 +53,7 @@ export const InitialModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post("/api/tenant", values);
+      await axios.post("/api/company", values);
 
       form.reset();
       router.refresh();

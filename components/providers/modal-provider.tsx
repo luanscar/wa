@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CreateTenantModel } from "../modals/create-tenant-modal";
 
 
 export const ModalProvider = () => {

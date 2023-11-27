@@ -37,7 +37,6 @@ const NAVIGATION_ITEMS = [
 
 export const NavigationSideBar = () => {
   const pathname = usePathname();
-  const router = useRouter();
   const newPathname = pathname.split("/")
   
   return (

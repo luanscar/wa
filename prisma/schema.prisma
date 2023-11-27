@@ -56,19 +56,19 @@ model Profile {
   accounts Account[]
   sessions Session[]
 
-  tenants Tenant[]
+  companies Company[]
   members Member[]
   channels Channel[]
 }
 
 
 
-model Tenant {
+model Company {
   id    String  @id @default(uuid())
   name  String?
   slug  String?
   plan  String?
-  image String?
+  image String? @default("https://placehold.co/360")
 
   profileId String
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
@@ -97,8 +97,8 @@ model Member {
   profileId String
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  tenantId String
-  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  companyId String
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
   messages Message[]
   directMessages DirectMessage[]
@@ -110,13 +110,11 @@ model Member {
   updatedAt DateTime @updatedAt
 
   @@index([profileId])
-  @@index([tenantId])
+  @@index([companyId])
 }
 
 enum ChannelType {
   TEXT
-  AUDIO
-  VIDEO
 }
 
 model Channel {
@@ -127,8 +125,8 @@ model Channel {
   profileId String
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  tenantId String
-  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  companyId String
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
   messages Message[]
 
@@ -136,7 +134,7 @@ model Channel {
   updatedAt DateTime @updatedAt
 
   @@index([profileId])
-  @@index([tenantId])
+  @@index([companyId])
 }
 
 

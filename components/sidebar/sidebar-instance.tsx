@@ -15,7 +15,6 @@ export const SidebarInstance = ({ instanceName, status, qrcode }: SidebarInstanc
 
   const params = useParams();
 
-  console.log(params)
   const router = useRouter();
   const onClick = () => {
     router.push(`/instances/${instanceId}`)

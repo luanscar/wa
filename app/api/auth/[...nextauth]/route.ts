@@ -56,14 +56,21 @@ export const authOptions: AuthOptions = {
   
   debug: process.env.NODE_ENV === 'development',
   callbacks: {
-    session: ({ session, token }) => ({
+    async jwt({ token, user }) {
+			user && (token.user = user)
+			return token
+		},
+    session:({ session, token }) => ({
       ...session,
       user: {
         ...session.user,
         id: token.sub,
       },
+
     }),
   },
+
+  
   session: {
     strategy: "jwt",
   },

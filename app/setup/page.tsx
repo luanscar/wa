@@ -2,14 +2,14 @@ import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import { InitialModal } from "@/components/modals/initial-modal";
+import { InitialModal } from "@/components/modals/InitialModal";
 
 const SetupPage = async () => {
 
 
   const profile = await getCurrentUser();
 
-  const tenant = await db.tenant.findFirst({
+  const company = await db.company.findFirst({
     where: {
       profileId: profile?.id
     }
@@ -19,8 +19,8 @@ const SetupPage = async () => {
     return redirect('/')
   }
 
-  if (tenant) {
-    return redirect(`/${tenant.slug}`);
+  if (company) {
+    return redirect(`/${company.slug}`);
   }
 
   return <InitialModal />

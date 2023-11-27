@@ -2,7 +2,6 @@
 
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import DesktopSidebar from './DesktopSidebar';
-import getCurrentTenant from '@/app/actions/getCurrentTenant';
 
 async function Sidebar({ children }: {
   children: React.ReactNode,
@@ -16,7 +15,7 @@ async function Sidebar({ children }: {
       <DesktopSidebar 
       currentUser={currentUser!} />
       {/* <MobileFooter /> */}
-      <main className="h-full">
+      <main className="lg:pl-20 h-full">
         {children}
       </main>
     </div>

@@ -6,6 +6,7 @@ import ToasterContext from '@/context/ToasterContext'
 import { ModalProvider } from '@/components/providers/modal-provider'
 import { QueryProvider } from '@/components/providers/query-provider'
 import NextProgressBar from '@/components/providers/NextProgressBar'
+import { SocketProvider } from '@/components/providers/SocketProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,10 +26,14 @@ export default function RootLayout({
       <NextProgressBar>
         <AuthContext>
           <ToasterContext />
-          <QueryProvider>
+          
+            <SocketProvider>
             <ModalProvider />
+            <QueryProvider>
             {children}
-          </QueryProvider>
+            </QueryProvider>
+            </SocketProvider>
+          
         </AuthContext>
         </NextProgressBar>
       </body>

@@ -51,7 +51,6 @@ export const InstanceSidebar = async () => {
   const instances = usersOnTenants[0].tenant.instances
 
 
-  console.log(usersOnTenants[0])
 
   // border color 
   return (

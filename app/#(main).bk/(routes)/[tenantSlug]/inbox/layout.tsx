@@ -23,6 +23,8 @@ export default async function InboxLayout({
   
   const tenantId = tenant?.tenants[0].id
 
+  console.log(tenantId)
+
   return (
     <div className="h-full">
          <InboxSidebar tenantId={tenantId as string} />
