@@ -10,14 +10,21 @@ const getUsers = async () => {
   }
 
   try {
-    const users = await db.profile.findMany({
+    const members = await db.profile.findMany({
       orderBy: {
         createdAt: 'desc'
       },
       where: {
         NOT: {
-          email: session.user.email
-        }
+          email: session.user.email,
+          companies: {
+            some: {
+             members: true 
+            }
+          }
+        },
+
+        
       }
     });
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
-import {  Profile } from "@prisma/client";
+import {  Member, Profile } from "@prisma/client";
 import LoadingModal from "../modals/LoadingModal";
 import Avatar from "../Avatar";
 
