@@ -13,7 +13,7 @@ const CompanyPage = async ({
 
 
  return(
-  <div className="hidden lg:block lg:pl-80 w-full h-full">
+  <div className="hidden lg:block w-full h-full">
   <EmptyState />
   </div>
  )

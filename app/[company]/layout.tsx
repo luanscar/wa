@@ -1,45 +1,39 @@
-
 import { db } from "@/lib/db";
-import getUsers from "../actions/getUsers";
-import { Navigation } from "@/components/navigation/Navigation";
-import { profile } from "console";
 import getCurrentUser from "../actions/getCurrentUser";
+import Navigation from "@/components/navigation/Navigation";
+import SidebarManager from "@/components/sidebar-manager/SidebarManager";
+import { TabPanel } from "@/components/tabs/TabPanel";
+import { redirect } from "next/navigation";
 
 const CompanyLayout = async ({ children }: { children: React.ReactNode }) => {
-  
-    const users = await getUsers();
-    const profile = await getCurrentUser();
+  const profile = await getCurrentUser();
+
+  if(!profile){
+    return redirect('/')
+  }
 
   const companyId = await db.profile.findUnique({
     where: {
       id: profile?.id,
-      
     },
     select: {
       companies: {
         select: {
-          slug: true
-        }
-      }
-    }
-  
-  })
-  console.log(companyId?.companies[0].slug)
-  
-    return (
-      <> 
+          slug: true,
+        },
+      },
+    },
+  });
+
+  return (
+    <>
       <div className="flex h-full">
         <Navigation />
-
-        <div className="md:ml-[72px] w-96 h-full">
-        Sidebar
-        </div>
         
+
         {children}
       </div>
-      
-      </>
-      
+    </>
   );
 };
 

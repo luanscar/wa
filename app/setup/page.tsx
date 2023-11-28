@@ -20,7 +20,7 @@ const SetupPage = async () => {
   }
 
   if (company) {
-    return redirect(`/${company.slug}`);
+    return redirect(`/${company.slug}/inbox`);
   }
 
   return <InitialModal />
