@@ -7,35 +7,40 @@ import React from "react";
 
 export default async function UsersLayout({
   children,
+  params
 }: {
   children: React.ReactNode;
+  params: {
+    companyId: string;
+  }
 }) {
-
+  
     const profile = await getCurrentUser()
     const members = await db.member.findMany({
         where: {
             company: {
-               slug: "bfcont",
+               id: params.companyId
               }, 
-              
-              
               NOT: {
                 profile: {
-                    email: "luanscar@outlook.com"
+                    email: profile?.email
                 }
             },
-            
-           
+             
         },
+        
         include: {
             profile: true,
-          }
+            
+          },
+           
     })
+
+
+    
   return (
   <div className="flex w-full h-full">
-    <SidebarManager label="Users">
-        <UserList items={members}/>
-    </SidebarManager>
+    <SidebarManager companyId={params.companyId}/>
     {children}
   </div>)
 }

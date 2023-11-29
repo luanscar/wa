@@ -8,21 +8,32 @@ const SetupPage = async () => {
 
 
   const profile = await getCurrentUser();
-
-  const company = await db.company.findFirst({
+  const member = await db.member.findFirst({
     where: {
-      profileId: profile?.id
-    }
+      profileId: profile?.id,
+    },
   });
+  
 
   if(!profile){
     return redirect('/')
   }
 
-  if (company) {
-    return redirect(`/${company.slug}/inbox`);
-  }
+  const company = await db.company.findFirst({
+    where: {
+      members: {
+        some: {
+          profileId: profile.id
+        }
+      }
+    }
+  });
 
+  
+  if(company){
+    return redirect(`/${company?.id}/inbox`);
+
+  }
   return <InitialModal />
 }
 

@@ -1,10 +1,10 @@
-import { Tenant } from "@prisma/client";
+import { Company } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "createTenant";
+export type ModalType = "members";
 
 interface ModalData {
-  tenant?: Tenant;
+  company?: Company;
 }
 
 interface ModalStore {

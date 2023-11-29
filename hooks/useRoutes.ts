@@ -20,28 +20,28 @@ const useRoutes = () => {
     
     { 
       label: 'Inbox', 
-      href:`/${params?.company}/inbox`, 
+      href:`/${params?.companyId}/inbox`, 
       icon: LuInbox,
-      active: pathname ===`/${params?.company}/inbox` || !!conversationId
+      active: pathname ===`/${params?.companyId}/inbox` || !!conversationId
     },
     { 
       label: 'Panel', 
-      href: `/${params?.company}/panel`, 
+      href: `/${params?.companyId}/panel`, 
       icon: LuCat,
-      active: pathname === `/${params?.company}/panel` 
+      active: pathname === `/${params?.companyId}/panel` 
     },
     
     { 
       label: 'Users', 
-      href: `/${params?.company}/users`, 
+      href: `/${params?.companyId}/users`, 
       icon: LuUsers,
-      active: pathname === `/${params?.company}/users`
+      active: pathname === `/${params?.companyId}/users`
     },
     { 
       label: 'Instances', 
-      href: `/${params?.tenantSlug}/instances`, 
+      href: `/${params?.companyId}/instances`, 
       icon: LuSmartphone,
-      active:  pathname === `/${params?.company}/instances`
+      active:  pathname === `/${params?.companyId}/instances`
     },
     {
       label: 'Logout', 

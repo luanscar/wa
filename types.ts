@@ -1,9 +1,9 @@
 import { Server as NetServer, Socket } from "net";
 import { NextApiResponse } from "next";
 import { Server as SocketIOServer } from "socket.io";
-import { Tenant, Member, Profile } from "@prisma/client"
+import {  Member, Profile, Company } from "@prisma/client"
 
-export type TenantWithMembersWithProfiles = Tenant & {
+export type CompanyWithMembersWithProfiles = Company & {
   members: (Member & { profile: Profile })[];
 };
 

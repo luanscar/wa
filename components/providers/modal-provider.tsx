@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { MembersModal } from "../modals/MembersModal";
 
 
 export const ModalProvider = () => {
@@ -17,7 +18,7 @@ export const ModalProvider = () => {
 
   return (
     <>
-
+      <MembersModal/>
     </>
   )
 }
