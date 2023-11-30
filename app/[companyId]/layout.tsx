@@ -1,7 +1,7 @@
-import { db } from "@/lib/db";
-import getCurrentUser from "../actions/getCurrentUser";
 import Navigation from "@/components/navigation/Navigation";
+import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+import getCurrentUser from "../actions/getCurrentUser";
 
 const CompanyLayout = async ({
   children,
@@ -22,15 +22,15 @@ const CompanyLayout = async ({
     where: {
       id: params.companyId
     }
-  
+
   });
 
-  if(!company){
+  if (!company) {
     return redirect('/')
   }
 
 
-  
+
   return (
     <>
       <div className="flex h-full">

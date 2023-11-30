@@ -6,17 +6,16 @@ interface InboxPageProps {
   }
 };
 
-const InboxPage = async ({
-  params
+const InboxPage = ({
 }: InboxPageProps) => {
 
 
 
- return(
-  <div className="hidden md:block w-full h-full">
-  <EmptyState />
-  </div>
- )
+  return (
+    <div className="hidden md:block w-full h-full">
+      <EmptyState />
+    </div>
+  )
 }
 
 export default InboxPage;

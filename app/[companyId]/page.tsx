@@ -7,16 +7,15 @@ interface CompanyPageProps {
 };
 
 const CompanyPage = async ({
-  params
 }: CompanyPageProps) => {
 
 
 
- return(
-  <div className="hidden lg:block w-full h-full">
-  <EmptyState />
-  </div>
- )
+  return (
+    <div className="hidden lg:block w-full h-full">
+      <EmptyState />
+    </div>
+  )
 }
 
 export default CompanyPage;
