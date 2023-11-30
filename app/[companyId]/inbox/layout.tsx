@@ -1,12 +1,12 @@
-import CompanyManager from "@/components/company/CompanyManager";
-import { TabPanel } from "@/components/tabs/TabPanel";
+import CompanyManager from '@/components/company/CompanyManager'
+import { TabPanel } from '@/components/tabs/TabPanel'
 
 const InboxLayout = ({
   children,
   params,
 }: {
-  children: React.ReactNode;
-  params: { companyId: string };
+  children: React.ReactNode
+  params: { companyId: string }
 }) => {
   return (
     <>
@@ -14,12 +14,10 @@ const InboxLayout = ({
         <CompanyManager companyId={params.companyId}>
           <TabPanel />
         </CompanyManager>
-
-
         {children}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default InboxLayout;
+export default InboxLayout

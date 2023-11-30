@@ -1,45 +1,41 @@
-import Navigation from "@/components/navigation/Navigation";
-import { db } from "@/lib/db";
-import { redirect } from "next/navigation";
-import getCurrentUser from "../actions/getCurrentUser";
+import Navigation from '@/components/navigation/Navigation'
+import { db } from '@/lib/db'
+import { redirect } from 'next/navigation'
+import getCurrentUser from '../actions/getCurrentUser'
 
 const CompanyLayout = async ({
   children,
   params,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
   params: {
-    companyId: string;
-  };
+    companyId: string
+  }
 }) => {
-  const profile = await getCurrentUser();
+  const profile = await getCurrentUser()
 
   if (!profile) {
-    return redirect("/");
+    return redirect('/')
   }
 
   const company = await db.company.findUnique({
     where: {
-      id: params.companyId
-    }
-
-  });
+      id: params.companyId,
+    },
+  })
 
   if (!company) {
     return redirect('/')
   }
 
-
-
   return (
     <>
       <div className="flex h-full">
         <Navigation />
-
         {children}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CompanyLayout;
+export default CompanyLayout

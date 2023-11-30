@@ -1,16 +1,12 @@
-import EmptyState from "@/components/EmptyState";
+import EmptyState from '@/components/EmptyState'
 
 interface CompanyPageProps {
   params: {
-    company: string;
+    company: string
   }
-};
+}
 
-const CompanyPage = async ({
-}: CompanyPageProps) => {
-
-
-
+const CompanyPage = async ({}: CompanyPageProps) => {
   return (
     <div className="hidden lg:block w-full h-full">
       <EmptyState />
@@ -18,4 +14,4 @@ const CompanyPage = async ({
   )
 }
 
-export default CompanyPage;
+export default CompanyPage

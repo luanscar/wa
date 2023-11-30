@@ -1,16 +1,12 @@
-import EmptyState from "@/components/EmptyState";
+import EmptyState from '@/components/EmptyState'
 
 interface InboxPageProps {
   params: {
-    company: string;
+    company: string
   }
-};
+}
 
-const InboxPage = ({
-}: InboxPageProps) => {
-
-
-
+const InboxPage = ({}: InboxPageProps) => {
   return (
     <div className="hidden md:block w-full h-full">
       <EmptyState />
@@ -18,4 +14,4 @@ const InboxPage = ({
   )
 }
 
-export default InboxPage;
+export default InboxPage
