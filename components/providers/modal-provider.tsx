@@ -1,24 +1,22 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
-import { MembersModal } from "../modals/MembersModal";
-
+import { useEffect, useState } from 'react'
+import { CreateProfileModal } from '../modals/CreateProfileModal'
 
 export const ModalProvider = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIsMounted(true)
+  }, [])
 
   if (!isMounted) {
-    return null;
+    return null
   }
 
   return (
     <>
-      <MembersModal/>
+      <CreateProfileModal />
     </>
   )
 }

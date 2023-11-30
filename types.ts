@@ -9,7 +9,7 @@ export type CompanyWithMembersWithProfiles = Company & {
 
 
 
-export type MembersWithProfiles = (Member & { profile: Profile })[]
+export type MembersWithProfiles = (Member & { profile: Profile })[] 
 
 
 export type NextApiResponseServerIo = NextApiResponse & {

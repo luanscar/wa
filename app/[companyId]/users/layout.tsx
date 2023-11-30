@@ -1,11 +1,11 @@
 import getCurrentUser from '@/app/actions/getCurrentUser'
 import CompanyManager from '@/components/company/CompanyManager'
-import UserList from '@/components/user/UserList'
+import ProfileList from '@/components/profiles/ProfileList'
 import { db } from '@/lib/db'
 
 import React from 'react'
 
-export default async function UsersLayout({
+export default async function ProfilesLayout({
   children,
   params,
 }: {
@@ -15,27 +15,52 @@ export default async function UsersLayout({
   }
 }) {
   const profile = await getCurrentUser()
-  const members = await db.member.findMany({
+
+  // const members = await db.member.findMany({
+  //   where: {
+  //     company: {
+  //       id: params.companyId,
+  //     },
+  //     NOT: {
+  //       profile: {
+  //         email: profile?.email,
+  //       },
+  //     },
+  //   },
+
+  //   include: {
+  //     profile: true,
+  //   },
+  // })
+
+  const company = await db.company.findUnique({
     where: {
-      company: {
-        id: params.companyId,
-      },
-      NOT: {
-        profile: {
-          email: profile?.email,
+      id: params.companyId,
+    },
+    include: {
+      members: {
+        include: {
+          profile: true,
+        },
+        orderBy: {
+          profile: {
+            createdAt: 'desc',
+          },
         },
       },
     },
-
-    include: {
-      profile: true,
-    },
   })
+
+  const members = company?.members.filter(
+    (member) => member.profileId !== profile?.id
+  )
+
+  console.log(members, 'USERS LAYOUT')
 
   return (
     <div className="flex w-full h-full">
       <CompanyManager companyId={params.companyId}>
-        <UserList items={members} />
+        <ProfileList items={members} />
       </CompanyManager>
 
       {children}

@@ -1,7 +1,7 @@
 import { Company } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "members";
+export type ModalType = "members" | "profiles";
 
 interface ModalData {
   company?: Company;

@@ -1,59 +1,52 @@
-"use client";
+'use client'
 
-import { CompanyWithMembersWithProfiles } from "@/types";
-import { MemberRole } from "@prisma/client";
-import { 
-  ChevronDown, 
-  LogOut, 
-  PlusCircle, 
-  Settings, 
-  Trash, 
+import { CompanyWithMembersWithProfiles } from '@/types'
+import { MemberRole } from '@prisma/client'
+import {
+  ChevronDown,
+  LogOut,
+  PlusCircle,
+  Settings,
+  Trash,
   UserPlus,
-  Users
-} from "lucide-react";
+  Users,
+} from 'lucide-react'
 
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-import { useModal } from "@/hooks/use-modal-store";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { useModal } from '@/hooks/use-modal-store'
 
 interface CompanyHeaderProps {
-  company: CompanyWithMembersWithProfiles;
-  role?: MemberRole;
-};
+  company: CompanyWithMembersWithProfiles
+  role?: MemberRole
+}
 
-export const CompanyHeader = ({
-  company,
-  role
-}: CompanyHeaderProps) => {
-  const { onOpen } = useModal();
+export const CompanyHeader = ({ company, role }: CompanyHeaderProps) => {
+  const { onOpen } = useModal()
 
-  const isAdmin = role === MemberRole.ADMIN;
-  const isModerator = isAdmin || role === MemberRole.MODERATOR;
+  const isAdmin = role === MemberRole.ADMIN
+  const isModerator = isAdmin || role === MemberRole.MODERATOR
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger 
-        className="focus:outline-none" 
-        asChild
-      >
-        <button
-          className="w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition"
-        >
+      <DropdownMenuTrigger className="focus:outline-none" asChild>
+        <button className="w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition">
           {company.name}
           <ChevronDown className="h-5 w-5 ml-auto" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end"
+      <DropdownMenuContent
+        align="end"
         className="w-56 text-xs font-medium text-black dark:text-neutral-400 space-y-[2px]"
       >
         {isModerator && (
           <DropdownMenuItem
-            onClick={() => onOpen("invite", { company })}
+            onClick={() => onOpen('invite', { company })}
             className="text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer"
           >
             Invite People
@@ -62,7 +55,7 @@ export const CompanyHeader = ({
         )}
         {isAdmin && (
           <DropdownMenuItem
-            onClick={() => onOpen("editCompany", { company })}
+            onClick={() => onOpen('editCompany', { company })}
             className="px-3 py-2 text-sm cursor-pointer"
           >
             Company Settings
@@ -71,28 +64,26 @@ export const CompanyHeader = ({
         )}
         {isAdmin && (
           <DropdownMenuItem
-            onClick={() => onOpen("members", { company })}
+            onClick={() => onOpen('members', { company })}
             className="px-3 py-2 text-sm cursor-pointer"
           >
-            Manage Members
+            Criar Perfil
             <Users className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {isModerator && (
           <DropdownMenuItem
-            onClick={() => onOpen("createChannel")}
+            onClick={() => onOpen('createChannel')}
             className="px-3 py-2 text-sm cursor-pointer"
           >
             Create Channel
             <PlusCircle className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
-        {isModerator && (
-          <DropdownMenuSeparator />
-        )}
+        {isModerator && <DropdownMenuSeparator />}
         {isAdmin && (
           <DropdownMenuItem
-            onClick={() => onOpen("deleteCompany", { company })}
+            onClick={() => onOpen('deleteCompany', { company })}
             className="text-rose-500 px-3 py-2 text-sm cursor-pointer"
           >
             Delete Company
@@ -101,7 +92,7 @@ export const CompanyHeader = ({
         )}
         {!isAdmin && (
           <DropdownMenuItem
-            onClick={() => onOpen("leaveCompany", { company })}
+            onClick={() => onOpen('leaveCompany', { company })}
             className="text-rose-500 px-3 py-2 text-sm cursor-pointer"
           >
             Leave Company
