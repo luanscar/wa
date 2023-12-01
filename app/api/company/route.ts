@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(company);
   } catch (error) {
-    console.log("[TENANTS_POST]", error);
+    console.log("[COMPANY_POST]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

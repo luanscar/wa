@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import axios from "axios";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import axios from 'axios'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { useEffect, useState } from 'react'
 
 import {
   Dialog,
@@ -13,60 +13,61 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog'
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+  FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
-  name: z.string().min(5, {
-    message: "Tenant name is required."
-  }).toUpperCase()
-});
-
+  name: z
+    .string()
+    .min(5, {
+      message: 'Razão Social ou Nome Social é obrigatório!.',
+    })
+    .toUpperCase(),
+})
 
 export const InitialModal = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false)
 
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIsMounted(true)
+  }, [])
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-    }
-  });
+      name: '',
+    },
+  })
 
-  const isLoading = form.formState.isSubmitting;
+  const isLoading = form.formState.isSubmitting
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post("/api/company", values);
+      await axios.post('/api/company', values)
 
-      form.reset();
-      router.refresh();
-      window.location.reload();
+      form.reset()
+      router.refresh()
+      window.location.reload()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
   if (!isMounted) {
-    return null;
+    return null
   }
-
 
   return (
     <Dialog open>
@@ -76,7 +77,8 @@ export const InitialModal = () => {
             Customize your server
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
-            Give your server a personality with a name and an image. You can always change it later.
+            Give your server a personality with a name and an image. You can
+            always change it later.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -87,9 +89,7 @@ export const InitialModal = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel
-                      className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70"
-                    >
+                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
                       Server name
                     </FormLabel>
                     <FormControl>
@@ -106,9 +106,7 @@ export const InitialModal = () => {
               />
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
-              <Button disabled={isLoading}>
-                Create
-              </Button>
+              <Button disabled={isLoading}>Create</Button>
             </DialogFooter>
           </form>
         </Form>

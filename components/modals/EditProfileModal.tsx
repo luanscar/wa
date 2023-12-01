@@ -29,9 +29,21 @@ import { useModal } from '@/hooks/use-modal-store'
 import toast from 'react-hot-toast'
 
 const formSchema = z.object({
-  name: z.string().min(1, {
-    message: 'Server name is required.',
-  }),
+  name: z
+    .string()
+    .min(1, {
+      message: 'Nome perfil é obrigatório!.',
+    })
+    .transform((name) => {
+      return name
+        .trim()
+        .toLocaleLowerCase()
+        .split(' ')
+        .map((word) => {
+          return word[0].toUpperCase().concat(word.substring(1))
+        })
+        .join(' ')
+    }),
   email: z.string().email('E-mail is required'),
   password: z.string().min(8, {
     message: 'Sua senha deve ter no mínimo 8 caracters',
@@ -88,10 +100,6 @@ export const EditProfileModal = () => {
           <DialogTitle className="text-2xl text-center font-bold">
             Editar Perfil
           </DialogTitle>
-          <DialogDescription className="text-center text-zinc-500">
-            Give your server a personality with a name and an image. You can
-            always change it later.
-          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -161,8 +169,8 @@ export const EditProfileModal = () => {
               />
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
-              <Button variant="ghost" disabled={isLoading}>
-                Save
+              <Button variant="default" disabled={isLoading}>
+                Salvar
               </Button>
             </DialogFooter>
           </form>

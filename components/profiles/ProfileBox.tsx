@@ -1,4 +1,4 @@
-import { Member, Profile } from '@prisma/client'
+import { Member, MemberRole, Profile } from '@prisma/client'
 import axios from 'axios'
 import { Pen, Trash2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -11,9 +11,10 @@ import { useModal } from '@/hooks/use-modal-store'
 
 interface ProfileBoxProps {
   data: Member & { profile: Profile }
+  role?: MemberRole
 }
 
-const ProfileBox: React.FC<ProfileBoxProps> = ({ data }) => {
+const ProfileBox: React.FC<ProfileBoxProps> = ({ data }, role) => {
   const router = useRouter()
 
   const [loadingId, setLoadingId] = useState('')
@@ -72,8 +73,7 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({ data }) => {
             </div>
           </div>
         </div>
-
-        {data.role !== 'ADMIN' && (
+        {data.role !== MemberRole.ADMIN && (
           <div>
             <Button
               onClick={() => onOpen('editProfile', data)}

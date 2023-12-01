@@ -11,7 +11,7 @@ export async function POST(
 ) {
   try {
     const profile = await getCurrentUser();
-    const { name, email } = await req.json();
+    const { name, email, role } = await req.json();
     const { searchParams } = new URL(req.url);
 
     const companyId = searchParams.get("companyId");
@@ -47,7 +47,7 @@ export async function POST(
             members: {
                 create: {
                     companyId: companyId,
-                    role: MemberRole.MODERATOR,
+                    role
                 }
             }
         }
@@ -58,7 +58,7 @@ export async function POST(
 
     return NextResponse.json(newProfile);
   } catch (error) {
-    console.log("CHANNELS_POST", error);
+    console.log("PROFLE_POST", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

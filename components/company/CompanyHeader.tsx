@@ -80,25 +80,6 @@ export const CompanyHeader = ({ company, role }: CompanyHeaderProps) => {
             <PlusCircle className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
-        {isModerator && <DropdownMenuSeparator />}
-        {isAdmin && (
-          <DropdownMenuItem
-            onClick={() => onOpen('deleteCompany', { company })}
-            className="text-rose-500 px-3 py-2 text-sm cursor-pointer"
-          >
-            Delete Company
-            <Trash className="h-4 w-4 ml-auto" />
-          </DropdownMenuItem>
-        )}
-        {!isAdmin && (
-          <DropdownMenuItem
-            onClick={() => onOpen('leaveCompany', { company })}
-            className="text-rose-500 px-3 py-2 text-sm cursor-pointer"
-          >
-            Leave Company
-            <LogOut className="h-4 w-4 ml-auto" />
-          </DropdownMenuItem>
-        )}
       </DropdownMenuContent>
     </DropdownMenu>
   )

@@ -14,7 +14,6 @@ export async function DELETE(
   try {
     const profile = await getCurrentUser();
 
-    console.log(params.profileId, 'ROUTE PROFILEID')
     if (!profile) {
       return new NextResponse("Unauthorized" ,{ status: 401 });
     }
@@ -22,7 +21,7 @@ export async function DELETE(
     
 
     if (!params.profileId) {
-      return new NextResponse("Member ID missing", { status: 400 });
+      return new NextResponse("Profile ID missing", { status: 400 });
     }
 
     const updateProfile = await db.profile.delete({
@@ -33,7 +32,7 @@ export async function DELETE(
 
     return NextResponse.json(updateProfile);
   } catch (error) {
-    console.log("[MEMBER_ID_DELETE]", error);
+    console.log("[PROFILE_ID_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
@@ -53,7 +52,7 @@ export async function PATCH(
     }
 
     if (!params.profileId) {
-      return new NextResponse("Member ID missing", { status: 400 });
+      return new NextResponse("Profile ID missing", { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -71,7 +70,7 @@ export async function PATCH(
 
     return NextResponse.json(updateProfilePassword);
   } catch (error) {
-    console.log("[MEMBERS_ID_PATCH]", error);
+    console.log("[PROFILES_ID_PATCH]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
