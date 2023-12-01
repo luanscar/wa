@@ -1,6 +1,6 @@
 'use client'
 
-import { CompanyWithMembersWithProfiles, MembersWithProfiles } from '@/types'
+import { MembersWithProfiles } from '@/types'
 import ProfileBox from './ProfileBox'
 
 interface ProfileListProps {
@@ -8,11 +8,10 @@ interface ProfileListProps {
 }
 
 const ProfileList: React.FC<ProfileListProps> = ({ items }) => {
+  console.log(items, 'PROFILE LIST')
   return (
     <div className="p-2">
-      {items.map((item) => (
-        <ProfileBox key={item.id} data={item} />
-      ))}
+      {items?.map((item) => <ProfileBox key={item.id} data={item} />)}
     </div>
   )
 }

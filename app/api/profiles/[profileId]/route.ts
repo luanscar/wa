@@ -43,13 +43,10 @@ export async function PATCH(
   req: Request,
   { params }: { params: { profileId: string } }
 ) {
-
-   
   try {
     const profile = await getCurrentUser();
-    const { password } = await req.json();
-    console.log(params.profileId, 'PROFILE ID')
-
+    const { name, email, password } = await req.json();
+   
 
     if (!profile) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -66,6 +63,8 @@ export async function PATCH(
         id: params.profileId,
       },
       data: {
+        name,
+        email,
         hashedPassword: hashedPassword
       },
     });

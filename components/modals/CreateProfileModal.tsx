@@ -83,11 +83,6 @@ export const CreateProfileModal = () => {
     }
   }
 
-  const handleClose = () => {
-    form.reset()
-    onClose()
-  }
-
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="bg-white overflow-hidden">

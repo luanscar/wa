@@ -2,23 +2,23 @@ import { Member, Profile } from '@prisma/client'
 import axios from 'axios'
 import { Pen, Trash2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import Avatar from '../Avatar'
 import LoadingModal from '../modals/LoadingModal'
 import { Button } from '../ui/button'
 import qs from 'query-string'
-import { MembersWithProfiles } from '@/types'
+import { useModal } from '@/hooks/use-modal-store'
 
 interface ProfileBoxProps {
   data: Member & { profile: Profile }
 }
 
 const ProfileBox: React.FC<ProfileBoxProps> = ({ data }) => {
-  console.log(data, 'DATA')
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
 
   const [loadingId, setLoadingId] = useState('')
+
+  const { onOpen } = useModal()
 
   const onDelete = async (profileId: string) => {
     try {
@@ -27,7 +27,7 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({ data }) => {
         url: `/api/profiles/${profileId}`,
       })
 
-      const response = await axios.delete(url)
+      await axios.delete(url)
       router.refresh()
     } catch (error) {
       console.log(error)
@@ -72,15 +72,23 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({ data }) => {
             </div>
           </div>
         </div>
-        <Button className="absolute bg-white hover:bg-gray-100 drop-shadow-lg shrink-0 h-10 w-10 top-4 p-0 top-4 mr-14 rounded-full right-0 hidden group-hover:flex">
-          <Pen size={16} stroke="black" />
-        </Button>
-        <Button
-          onClick={() => onDelete(data.profileId)}
-          className="absolute bg-white hover:bg-gray-100 drop-shadow-lg shrink-0 h-10 w-10 top-4 p-0 mr-2 rounded-full right-0 hidden group-hover:flex"
-        >
-          <Trash2 size={16} stroke="red" />
-        </Button>
+
+        {data.role !== 'ADMIN' && (
+          <div>
+            <Button
+              onClick={() => onOpen('editProfile', data)}
+              className="absolute bg-white hover:bg-gray-100 drop-shadow-lg shrink-0 h-10 w-10 top-4 p-0 top-4 mr-14 rounded-full right-0 hidden group-hover:flex"
+            >
+              <Pen size={16} stroke="black" />
+            </Button>
+            <Button
+              onClick={() => onDelete(data.profileId)}
+              className="absolute bg-white hover:bg-gray-100 drop-shadow-lg shrink-0 h-10 w-10 top-4 p-0 mr-2 rounded-full right-0 hidden group-hover:flex"
+            >
+              <Trash2 size={16} stroke="red" />
+            </Button>
+          </div>
+        )}
       </div>
     </>
   )

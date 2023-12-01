@@ -1,10 +1,13 @@
-import { Company } from "@prisma/client";
+import { MembersWithProfiles } from "@/types";
+import { Company, Member, Profile } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "members" | "profiles";
+export type ModalType = "members" | "profiles" | "editProfile";
 
 interface ModalData {
   company?: Company;
+  members?: Member;
+  profile?: Profile
 }
 
 interface ModalStore {
